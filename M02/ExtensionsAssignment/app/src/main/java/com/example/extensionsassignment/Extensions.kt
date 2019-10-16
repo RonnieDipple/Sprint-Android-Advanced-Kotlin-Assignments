@@ -53,30 +53,25 @@ fun Context.showNotification(id: Int, CHANNEL_ID: String){
 
 
 }
-
+// TL said it was OK to just load a URL, LOOKING AT YOU BRANDON
 fun ImageView.loadUrl(url: String){
+    Glide.with(this).load(url).into(this)
+}
+
+// Higher order functions will have to wait for another day
+/*private fun ImageView.loadurl(url:String){
     Glide.with(this)
         .load(url)
         .listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(
                 e: GlideException?,
                 model: Any?,
-                target: com.bumptech.glide.request.target.Target<Drawable>?,
+                target: Target<Drawable>?,
                 isFirstResource: Boolean
             ): Boolean {
+
                 return false
             }
-
-            override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: com.bumptech.glide.request.target.Target<Drawable>?,
-                dataSource: com.bumptech.glide.load.DataSource?,
-                isFirstResource: Boolean
-            ): Boolean {
-              return false
-            }
-
             ​
             override fun onResourceReady(
                 resource: Drawable?,
@@ -89,11 +84,12 @@ fun ImageView.loadUrl(url: String){
                 return false
             }
         })
-        .into(this)
-}
+        .into(this)*/
 
 
 
 
-}
+
+
+
 

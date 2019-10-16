@@ -29,15 +29,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         button_pic.setOnClickListener {
-            Glide.with(this)
-                .load("https://144f2a3a2f948f23fc61-ca525f0a2beaec3e91ca498facd51f15.ssl.cf3.rackcdn.com/uploads/food_portal_data/recipes/recipe/hero_article_image/1305/letterbox_resizeimage593x426xA6SozL86Xx.jpg")
-                .onSuccess{
+            // TL said it was OK to just load a URL as may have issues with readme, LOOKING AT YOU BRANDON
+            //BRANDON this is for you if you ever check this, English people eat this deliciousness for breakfast
+            imageView.loadUrl("https://144f2a3a2f948f23fc61-ca525f0a2beaec3e91ca498facd51f15.ssl.cf3.rackcdn.com/uploads/food_portal_data/recipes/recipe/hero_article_image/1305/letterbox_resizeimage593x426xA6SozL86Xx.jpg")
 
-                }
-                .onFailure{
 
-                }
-                .into(imageView)
         }
 
 
@@ -45,6 +41,8 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
+// TL said it was OK to just load a URL as may have issues with readme, LOOKING AT YOU BRANDON
     /*# Part - 2 Glide Extension Function
 1. Following is a code snippet for downloading an image using Glide and listening to success and failure events.
 

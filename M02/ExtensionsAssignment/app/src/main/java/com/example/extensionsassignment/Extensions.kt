@@ -9,10 +9,13 @@ import android.graphics.drawable.Drawable
 import android.media.Image
 import android.os.Build
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import java.lang.reflect.Array.get
 import javax.sql.DataSource
 
@@ -24,7 +27,7 @@ import javax.sql.DataSource
 5. Set an icon and use colorPrimary when trying to get the color for the icon.*/
 
 
-fun Context.showNotification(id: Int, CHANNEL_ID: String){
+fun Context.showNotification(id: Int, CHANNEL_ID: String) {
     val notificationCompat = NotificationCompat.Builder(this, CHANNEL_ID)
         .setContentTitle("This is my Notification Title")
         .setContentText("This is my Notification Title")
@@ -34,61 +37,112 @@ fun Context.showNotification(id: Int, CHANNEL_ID: String){
     val notificationManager: NotificationManager =
         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = ("Default Notification")
-            val descriptionText = ("Default Notification")
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
+    // Create the NotificationChannel, but only on API 26+ because
+    // the NotificationChannel class is new and not in the support library
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val name = ("Default Notification")
+        val descriptionText = ("Default Notification")
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+            description = descriptionText
+        }
+        // Register the channel with the system
 
-            notificationManager.createNotificationChannel(channel)
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    notificationManager.notify(id, notificationCompat.build())
+
+
+    /*// TL said it was OK to just load a URL, LOOKING AT YOU BRANDON
+    fun ImageView.loadUrl(url: String){
+        Glide.with(this).load(url).into(this)
+    }
+    */
+// Higher order functions will have to wait for another day
+
+    fun ImageView.loadUrl(url: String) {
+
+        Glide.with(this)
+            .load(url)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: com.bumptech.glide.load.DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+
+            })
+            .into(this)
+
+        //VIVEKS SOLUTION USING HIGHER ORDER FUNCTIONS
+        fun RequestBuilder<Drawable>.onSuccess(onSuccess: () -> Unit): RequestBuilder<Drawable> {
+
+            this.addListener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: com.bumptech.glide.load.DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    onSuccess.invoke()
+                    return false
+                }
+            })
+            return this
         }
 
-        notificationManager.notify(id, notificationCompat.build())
+        fun RequestBuilder<Drawable>.onFailure(onFailure: () -> Unit): RequestBuilder<Drawable> {
 
+            this.addListener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    onFailure.invoke()
+                    return false
+                }
 
-
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: com.bumptech.glide.load.DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+            })
+            return this
+        }
+    }
 }
-// TL said it was OK to just load a URL, LOOKING AT YOU BRANDON
-fun ImageView.loadUrl(url: String){
-    Glide.with(this).load(url).into(this)
-}
-
-// Higher order functions will have to wait for another day
-/*private fun ImageView.loadurl(url:String){
-    Glide.with(this)
-        .load(url)
-        .listener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
-
-                return false
-            }
-            ​
-            override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
-            ): Boolean {
-
-                return false
-            }
-        })
-        .into(this)*/
-
-
-
-
 
 
 

@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         button_pic.setOnClickListener {
             // TL said it was OK to just load a URL as may have issues with readme, LOOKING AT YOU BRANDON
             //BRANDON this is for you if you ever check this, English people eat this deliciousness for breakfast
-            imageView.loadUrl("https://144f2a3a2f948f23fc61-ca525f0a2beaec3e91ca498facd51f15.ssl.cf3.rackcdn.com/uploads/food_portal_data/recipes/recipe/hero_article_image/1305/letterbox_resizeimage593x426xA6SozL86Xx.jpg")
+            imageView.load("https://144f2a3a2f948f23fc61-ca525f0a2beaec3e91ca498facd51f15.ssl.cf3.rackcdn.com/uploads/food_portal_data/recipes/recipe/hero_article_image/1305/letterbox_resizeimage593x426xA6SozL86Xx.jpg")
 
 
         }

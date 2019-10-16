@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         pt1 == pt2
 
         pt2 < pt1
-        
+
 
 
 

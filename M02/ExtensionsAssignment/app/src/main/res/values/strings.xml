@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ExtensionsAssignment</string>
+    <string name="push_to_recieve_notification">Push To Recieve notification</string>
+    <string name="push_to_load_picture">Push to load picture</string>
 </resources>

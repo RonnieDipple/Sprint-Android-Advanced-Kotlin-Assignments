@@ -5,9 +5,16 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.media.Image
 import android.os.Build
+import android.widget.ImageView
 import androidx.core.app.NotificationCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import java.lang.reflect.Array.get
+import javax.sql.DataSource
 
 /*# Part - 1 Notification Builder (Extension Function using Lambda)
 1. Follow the example for AlertDialog builder in the guided project and repeat that for the Notification Builder class.
@@ -44,4 +51,49 @@ fun Context.showNotification(id: Int, CHANNEL_ID: String){
         notificationManager.notify(id, notificationCompat.build())
 
 
+
 }
+
+fun ImageView.loadUrl(url: String){
+    Glide.with(this)
+        .load(url)
+        .listener(object : RequestListener<Drawable> {
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                target: com.bumptech.glide.request.target.Target<Drawable>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                return false
+            }
+
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any?,
+                target: com.bumptech.glide.request.target.Target<Drawable>?,
+                dataSource: com.bumptech.glide.load.DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+              return false
+            }
+
+            ​
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any?,
+                target: Target<Drawable>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+
+                return false
+            }
+        })
+        .into(this)
+}
+
+
+
+
+}
+

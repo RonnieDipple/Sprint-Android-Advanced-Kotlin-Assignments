@@ -3,6 +3,8 @@ package com.example.assignment
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -42,7 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var songsList: List<Song>
     private lateinit var songListAdapter: SongListAdapter
-    private lateinit var layoutManager: LinearLayoutManager
 
     private val popSongs by lazy {
         listOf(
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         // recyclerView.setBackgroundColor(Color.BLUE)
         ////////////////
 
+        //This function takes a list and then passes it to the recyclerview adapter to be displayed
         initRecyclerView(songsList)
     }
 
@@ -94,8 +96,27 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             songListAdapter = SongListAdapter(songList)
            adapter = songListAdapter
-           
+
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_genre, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        //The final boss
+        when(item.itemId){
+            R.id.menu_pop -> {listType = Pop("TestPop")}
+            R.id.menu_rock -> {listType = Rock("TestRock")}
+            R.id.menu_hiphop -> {listType = HipHop("TestHipHop")}
+        }
+
+
+
+        return super.onOptionsItemSelected(item)
     }
 }

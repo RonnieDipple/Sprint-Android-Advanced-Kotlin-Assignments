@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/pop"
+        android:id="@+id/menu_pop"/>
+
+    <item
+        android:title="@string/rock"
+        android:id="@+id/menu_rock"/>
+    <item
+        android:title="@string/hiphop"
+        android:id="@+id/menu_hiphop"/>
+
+</menu>

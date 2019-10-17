@@ -1,8 +1,11 @@
 package com.example.assignment
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.properties.Delegates
 
 
 /*# Sprint-Android-Advanced-Kotlin-Assignments
@@ -35,9 +38,32 @@ Also think about how you can change the list and make sure the RecyclerView's ad
 2. Find an API that you can use for the songs instead of setting up your own objects.*/
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var songsList: List<Song>
+    private val pop = listOf(Pop("Pop"), Pop("Pop Song 2"))
+    private val rock = listOf(Rock("Rock"), Rock("Rock Song 2"))
+    private val hiphop = listOf(HipHop("Hiphop"), HipHop("Hiphop Song 2"))
+
+    private var listType: Song by Delegates.observable(Rock("Testing Rock")){
+        _,_: Song, new: Song ->
+        songsList = when(new){
+            is Pop -> pop
+            is Rock -> rock
+            is HipHop -> hiphop
+        }
+
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManager
+
+        //test recycler
+       // recyclerView.setBackgroundColor(Color.BLUE)
+        ////////////////
     }
 }

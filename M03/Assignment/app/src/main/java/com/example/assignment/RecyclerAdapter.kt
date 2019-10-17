@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
 
-class SongListAdapter(val songs: MutableList<Song>): RecyclerView.Adapter<SongListAdapter.ViewHolder>(){
+class SongListAdapter(val songs: List<Song>): RecyclerView.Adapter<SongListAdapter.ViewHolder>(){
 
 
 

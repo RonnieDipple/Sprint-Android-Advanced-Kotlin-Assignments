@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var songsList: List<Song>
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var songListAdapter: SongListAdapter
     private lateinit var layoutManager: LinearLayoutManager
 
     private val popSongs by lazy {
@@ -86,9 +86,16 @@ class MainActivity : AppCompatActivity() {
         // recyclerView.setBackgroundColor(Color.BLUE)
         ////////////////
 
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.setHasFixedSize(false)
-        layoutManager = LinearLayoutManager(this@MainActivity)
-        recyclerView.adapter = SongListAdapter(songsList)
+        initRecyclerView(songsList)
+    }
+
+    private fun initRecyclerView(songList: List<Song>){
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            songListAdapter = SongListAdapter(songList)
+           adapter = songListAdapter
+           
+        }
+
     }
 }

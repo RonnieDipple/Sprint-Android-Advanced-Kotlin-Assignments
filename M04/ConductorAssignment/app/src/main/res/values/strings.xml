@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ConductorAssignment</string>
+    <string name="press_button_to_send_message">Press Button To Send Message</string>
+    <string name="enter_text_here">Enter Text Here</string>
+    <string name="to_write_a_message">To Write A Message</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="write_a_message">Write a message</string>
 </resources>

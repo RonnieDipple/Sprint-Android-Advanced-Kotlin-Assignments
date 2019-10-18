@@ -8,36 +8,49 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_main"
+        android:id="@+id/tv_main_layout_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="test message"
         android:textSize="55sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_phone_number"
+        app:layout_constraintBottom_toTopOf="@+id/tv_main_layout_number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_main_layout_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test number"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_phone_number_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_main_layout_message" />
+
 
     <Button
-        android:id="@+id/button_phone_number"
+        android:id="@+id/button_phone_number_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/enter_your_phone_number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_message"
+        app:layout_constraintEnd_toStartOf="@+id/button_message_main"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_message"
+        android:id="@+id/button_message_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/write_a_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_phone_number" />
+        app:layout_constraintStart_toEndOf="@+id/button_phone_number_main" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

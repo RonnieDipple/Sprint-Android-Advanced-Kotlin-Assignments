@@ -5,4 +5,7 @@
     <string name="to_write_a_message">To Write A Message</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="write_a_message">Write a message</string>
+    <string name="you_looking_fine_gimme_those_digits">You looking fine gimme those digits</string>
+    <string name="send_me_a_message">send me a message</string>
+    <string name="enter_a_message_here">Enter a message here</string>
 </resources>
